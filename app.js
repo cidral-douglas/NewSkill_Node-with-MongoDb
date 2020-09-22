@@ -12,18 +12,27 @@ const linkSchema = new mongoose.Schema({
 
 const Link = mongoose.model('Link', linkSchema);
 
-let link = new Link({
-    title: "progbr",
-    description: "Link para o Site",
-    url: "https://programadorbr.com"
-});
+// let link = new Link({
+//     title: "progbr",
+//     description: "Link para o Site",
+//     url: "https://programadorbr.com"
+// });
 
-link.save().then(doc=>{console.log(doc)}).catch(err=>{console.log(err)});
+// link.save().then(doc=>{console.log(doc)}).catch(err=>{console.log(err)});
 
 mongoose.connect('mongodb://localhost/links', { useNewUrlParser: true, useUnifiedTopology: true}, (error,db) => {
-    // console.log(error);
-    // console.log(db);
     console.log("Success");
+
+    app.get('/:title', async (req, res) => {
+
+        let title = req.params.title;
+        try {
+            let doc = await Link.findOne({title});
+            res.redirect(doc.url);
+        } catch (error) {
+            res.send("Houve um erro");
+        }
+    });
 });
 
 app.get('/', (req, res)=>{
