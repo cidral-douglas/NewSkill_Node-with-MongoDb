@@ -4,7 +4,7 @@ const redirect = async (req,res) => {
 
     let title = req.params.title;
     try {
-        let doc = await Link.findOne({title});
+        let doc = await Link.findOneAndUpdate({title}, {$inc: {clicks: 1} }, {useFindAndModify: false});
         res.redirect(doc.url);
     } catch (error) {
         res.send(error);
@@ -39,7 +39,7 @@ const deleteLink = async (req,res) => {
     if(!id){ id = req.body.id }
 
     try {
-        await Link.findByIdAndDelete(id);
+        await Link.findByIdAndDelete(id, {useFindAndModify: false});
         res.redirect('/');
     } catch (error) { 
         res.status(404).send(error);

@@ -11,30 +11,33 @@
 
 <div class="container">
 
-        <h1> Links </h1>
-        <a href="/add">Adicionar Link </a>
+    <h1> Links </h1>
+    <a href="/add">Adicionar Link </a>
         
     <% for(let i=0; i<links.length; i++) {%>
 
         <div class="card p-3 mb-3" id ='<%=links[i]._id %>'>
+
             <form class="d-flex align-items-center justify-content-between" method="POST" action="?_method=DELETE">
                 <div class="d-flex flex-column">
-                    <a class="text-dark" href="/<%=links[i].title%>"> <h2> <%=links[i].title%> </h2> </a>
+                    <a class="text-dark" target="_blank" href="/<%=links[i].title%>"> <h2> <%=links[i].title%> </h2> </a>
                     <div> <%=links[i].description%> </div>
                     <div class="text-muted"> <%=links[i].url%> </div>
-                    <div class="text-info"><i class="material-icons">bar_chart</i> Clicks: <%=links[i].click%> </div>
-                </div>
+                    <div class="text-info"><i class="material-icons">bar_chart</i> Clicks: <%=links[i].clicks%> </div>
+                </div> <!--left side of the card-->
+
                 <div class="d-flex flex-column">
                     <input name="id" value='<%=links[i]._id %>' hidden>
                     <a class="btn btn-info mb-1" href="/edit/<%=links[i]._id %>"> Edit </a>
                     <button class="btn btn-danger" type="submit"> Delete </button>
-                </div>
+                </div> <!--right side of the card-->
             </form>
-        </div>
+
+        </div> <!--card-->
 
     <% } %> 
 
-</div>
+</div> <!--container-->
 
 
 </body>
