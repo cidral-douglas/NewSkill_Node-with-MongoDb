@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Links</title>
 </head>
 <body>
 
-    <h1> Links </h1>
-    <a href="/add">Adicionar Link </a>
-    
-<% for(let i=0; i<links.length; i++) {%>
+<div class="container">
 
-    <div id ='<%=links[i]._id %>'>
-        <form method="POST" action="?_method=DELETE">
-            <h2> <%=links[i].title%> </h2>
-            <div> <%=links[i].description%> </div>
-            <div> <%=links[i].url%> </div>
-            <input name="id" value='<%=links[i]._id %>' hidden>
-            <button type="submit"> Delete </button>
-            <a href="/edit/<%=links[i]._id %>"> Edit </a>
-        </form>
-    </div>
+        <h1> Links </h1>
+        <a href="/add">Adicionar Link </a>
+        
+    <% for(let i=0; i<links.length; i++) {%>
 
-<% } %> 
+        <div class="card p-3 mb-3" id ='<%=links[i]._id %>'>
+            <form class="d-flex align-items-center justify-content-between" method="POST" action="?_method=DELETE">
+                <div class="d-flex flex-column">
+                    <a class="text-dark" href="/<%=links[i].title%>"> <h2> <%=links[i].title%> </h2> </a>
+                    <div> <%=links[i].description%> </div>
+                    <div class="text-muted"> <%=links[i].url%> </div>
+                    <div class="text-info"><i class="material-icons">bar_chart</i> Clicks: <%=links[i].click%> </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <input name="id" value='<%=links[i]._id %>' hidden>
+                    <a class="btn btn-info mb-1" href="/edit/<%=links[i]._id %>"> Edit </a>
+                    <button class="btn btn-danger" type="submit"> Delete </button>
+                </div>
+            </form>
+        </div>
+
+    <% } %> 
+
+</div>
 
 
 </body>
