@@ -11,8 +11,10 @@
 
 <div class="container">
 
-    <h1> Links </h1>
-    <a href="/add">Adicionar Link </a>
+    <div class="text-center">
+        <h1 class="mt-2"> Links </h1>
+        <a class="btn btn-success mb-2 rounded-circle" href="/add">+</a>
+    </div>
         
     <% for(let i=0; i<links.length; i++) {%>
 
@@ -20,7 +22,7 @@
 
             <form class="d-flex align-items-center justify-content-between" method="POST" action="?_method=DELETE">
                 <div class="d-flex flex-column">
-                    <a class="text-dark" target="_blank" href="/<%=links[i].title%>"> <h2> <%=links[i].title%> </h2> </a>
+                    <a class="text-dark mb-2" target="_blank" href="/<%=links[i].title%>"> <h2> <%=links[i].title%> </h2> </a>
                     <div> <%=links[i].description%> </div>
                     <div class="text-muted"> <%=links[i].url%> </div>
                     <div class="text-info"><i class="material-icons">bar_chart</i> Clicks: <%=links[i].clicks%> </div>
